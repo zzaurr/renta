@@ -1,4 +1,4 @@
-import './Menu.css'
+import menu from './Menu.module.scss'
 import avatar from './images.png'
 import { NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
@@ -15,7 +15,7 @@ export const Menu = () => {
     <aside>
         <div className='userLogIn'>
             <button className='exit' onClick={logOut}>Выход</button>
-            <img className='avatar' src={avatar} />
+            <img className={menu.avatar} src={avatar} alt='avatar' />
             <h4 className='userName'>name</h4>
 
         </div>
