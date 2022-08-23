@@ -1,0 +1,124 @@
+
+
+#maincontent {
+    margin-right: 5px;
+    margin-left: 5px;
+    background-color: beige;
+    display: block;
+    position: relative;
+    width: 100%;
+    /* height: 100vh; */
+    /* min-height: 100vh; */
+}
+
+.title {
+    display: flex;
+    flex-wrap: wrap;
+}
+.title_img {
+    width: 100%;
+    height: 250px;
+    background-image: url(./bg.jpg);
+    background-position: center;
+    border-radius: 5px;
+}
+
+h1 {
+    width: max-content;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.title_backg {
+    height: 28px;
+    background-color: #82d9c8;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+.cardh2 {
+    display: inline-block;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 20px;
+
+}
+.blog_card {
+    /* text-align: center; */
+    /* border: 1px solid black; */
+    margin-bottom: 10px;
+    /* align-content:space-around; */
+
+    /* margin-right: 20px; */
+    /* align-self: flex-start; */
+}
+
+img {
+    /* width: 200px; */
+    height: 100px;
+    border-radius: 5px;
+}
+
+h4 {
+    font-size: 14px;
+    font-weight:500;
+    margin: 10px 0 14px 0;
+}
+
+p {
+    font-size: 12px;
+    color: #3e3e3e;
+    
+}
+
+svg {
+    width: 15px;
+    height: 15px;
+    padding-left: 1px;
+
+
+}
+
+.like {
+    width: 20px;
+    height: 20px;
+    padding-left: 0px;
+    background-color: transparent;
+    margin: 0;
+}
+
+.addFormBackgraund {
+    /* display:block; */
+    position: fixed;
+    height:auto;
+    width: 100%;
+    top: 0px;
+    bottom: 0px;
+    z-index: 1;
+    /* opacity: 90%; */
+    background: rgba(77, 77, 77, 0.7); 
+    backdrop-filter: blur(20px);
+    /* background-color: white; */
+
+}
+
+
+.addForm {
+    z-index: 999;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    width: auto;
+}
+
+
+
+
