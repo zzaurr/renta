@@ -1,18 +1,18 @@
 import menu from './menu.module.scss'
 import avatar from './images.png'
 import { NavLink } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { logOutR } from '../../store/slices/auth'
+// import { useDispatch } from 'react-redux'
+// import { logOutR } from '../../store/slices/auth'
 import { ReactComponent as SearchIcon } from './search.svg';
 
 
 export const Menu = () => {
 
-const dispatch = useDispatch()
+// const dispatch = useDispatch()
 
-const logOut = () => {
-    dispatch(logOutR())
-}
+// const logOut = () => {
+//     dispatch(logOutR())
+// }
 return (
 <aside>
     <div className={menu.userLogIn}>
