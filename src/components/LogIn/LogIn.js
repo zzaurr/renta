@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 import './LogIn.css'
 import { useDocumentTitle } from '../../utils/hooks';
-import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../store/slices/auth';
 
@@ -9,13 +8,11 @@ export const LogIn = () => {
 
     const loginRef = useRef();
     const passwordRef = useRef();
-    const history = useHistory()
 
     const dispatch = useDispatch()
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        history.push('/blog')
 
 
         const userData = {

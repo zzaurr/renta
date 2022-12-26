@@ -3,6 +3,6 @@ import { Posts } from '../Blog/Posts/Posts'
 
 export const Favorite = () => {
   return (
-    <Posts/>
+    <Posts isLikedPosts={true}/>
   )
 }
