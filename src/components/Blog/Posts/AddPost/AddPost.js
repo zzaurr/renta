@@ -4,9 +4,7 @@ import { addPostRedux } from '../../../../store/slices/posts';
 import { POST_URL } from '../../../Data/Data';
 
 
-    export const AddPost = ({setAddPost, addPost }) => {
-
-
+export const AddPost = ({setAddPost, addPost }) => {
     const titleRef = useRef();
     const desripionRef = useRef();
 
@@ -21,30 +19,18 @@ import { POST_URL } from '../../../Data/Data';
             liked: false,
         }
 
-        // const response = await fetch(POST_URL, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(newPost)
-
-        // });
-        // if(response.ok){
-        //     const newPostFromServer = await response.json()
-        //     setPosts([...posts, newPostFromServer])
-        // } else {
-        //     console.log(response.statusText)
-        // }
-
         dispatch(addPostRedux(newPost))
         setAddPost(false)
+    }
 
+    const showForm = () => {
+        setAddPost(true)
     }
 
     return (
         <>
          <div>
-            <button onClick={()=> setAddPost(true)}>добавить пост</button>
+            <button onClick={() => showForm()}>добавить пост</button>
         </div>
         {
         

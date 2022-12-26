@@ -2,40 +2,35 @@ import React, { useEffect, useState } from 'react'
 
 export const ToDo = () => {
 
-    const [todos, setToDos] = useState([])
-    const [inputValue, setInputValue] = useState('')
+  const [todos, setToDos] = useState([])
+  const [inputValue, setInputValue] = useState('')
 
 
-    useEffect( async () => {
+useEffect( async () => {
+  const fetchToDo = async () => {
+  const response = await fetch('https://jsonplaceholder.typicode.com/todos')
+  const json = await response.json()
+  setToDos(json)
+  }
+  fetchToDo()
+}, [])
 
-        const fetchToDo = async () => {
-            const response = await fetch('https://jsonplaceholder.typicode.com/todos')
-            const json = await response.json()
-            setToDos(json)
-        }
-        fetchToDo()
+const handleToDo = (e) => {
+  setInputValue(e.target.value)
+}
 
-    }, [])
+const submitToDo = (e) => {
+  e.preventDefault();
+  if(inputValue.split('').length < 10) alert('слишком коротко')
+  else (setToDos([...todos, {title: inputValue, id: todos.length + 2,} ]))
+  console.log(e.target)
+}
 
-    const handleToDo = (e) => {
-        setInputValue(e.target.value)
-    }
-
-    const submitToDo = (e) => {
-        e.preventDefault();
-        if(inputValue.split('').length < 10) alert('слишком коротко')
-        else (setToDos([...todos, {title: inputValue, id: todos.length + 2,} ]))
-        console.log(e.target)
-        
-    }
-
-    const deleteToDo = (id) => {
-        setToDos(todos.filter((t) => {
-            return t.id !== id
-        }))
-    }
-
-
+const deleteToDo = (id) => {
+  setToDos(todos.filter((t) => {
+  return t.id !== id
+  }))
+}
 
   return (
     <div>
