@@ -9,13 +9,14 @@ import { fetchPosts } from './store/slices/posts';
 import MenuLauout from './routes/MenuLayout';
 import { HeaderBlog } from './components/Header/Header';
 import { Favorite } from './components/Favorite/Favorite';
+import React from 'react';
+import { useAppDispatch } from './utils/hooks';
 
 
 
 
 function App() {
-  const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
 
   useEffect(()=> {

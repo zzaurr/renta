@@ -7,6 +7,11 @@ const reducer = {
     posts: postReducer,
 }
 
-export const store = configureStore({
+const store = configureStore({
     reducer,
 })
+
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
+
+export default store

@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { editPost } from "../../../../store/slices/posts";
-import { POST_URL } from "../../../Data/Data";
 import edit from './editPost.module.scss'
 
 export const EditPost = ({setflagEditPost, flagEditPost, selectedPost }) => {

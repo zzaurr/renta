@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react"
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux"
+import { AppDispatch, RootState } from "../store"
 
 
-export const useDocumentTitle = (title) => {
+export const useDocumentTitle = (title: unknown) => {
     useEffect(() => {
         document.title = `React app: ${title}`
-    }, [])
+    }, [title])
 }
 
-export const useInput = (initialValue, required) => {
+export const useInput = (initialValue: any, required: any) => {
     const [value, setValue] = useState(initialValue)
     const [isEmpty, setIsEmpty] = useState(false)
 
     return {
         value,
-        onChange: (e) => setValue(e.target.value),
-        onBlur: (e) => {
+        onChange: (e: { target: { value: any } }) => setValue(e.target.value),
+        onBlur: (e: { target: { value: any } }) => {
             if (e.target.value && required) {
                 setIsEmpty(true)
             } else setIsEmpty(false)
@@ -24,7 +26,7 @@ export const useInput = (initialValue, required) => {
     }
 }
 
-export const useFetchPosts = (url) => {
+export const useFetchPosts = () => {
     const [addPost, setAddPost] = useState(false)
     const [posts, setPosts] = useState([])
   
@@ -41,3 +43,6 @@ export const useFetchPosts = (url) => {
     return { addPost, setAddPost}
 
 }
+
+export const useAppDispatch = () => useDispatch<AppDispatch>();
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
