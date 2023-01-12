@@ -1,12 +1,13 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { deletePost, likePostRedux, selectPostsData } from '../../../store/slices/posts';
-import { useDocumentTitle } from '../../../utils/hooks';
+import {  useState } from 'react';
+import { deletePost, likePostRedux } from '../../../store/slices/posts';
+import { useAppDispatch, useAppSelector, useDocumentTitle } from '../../../utils/hooks';
 import { AddPost } from './AddPost/AddPost';
 
 import { EditPost } from './EditPost/EditPost';
 import Post from './Post';
 import blog from '../blog.module.scss'
+import React from 'react';
+import { SinglePost } from './post.model';
 
 
 
@@ -15,49 +16,44 @@ export const Posts =  ( {
   title = ''
 } ) => {
 
-  const { posts } = useSelector(selectPostsData)
+  const { posts } = useAppSelector(state => state.posts)
 
   const [flagEditPost, setflagEditPost] = useState(false)
-  const [selectedPost, setSelectedPost] =useState({})
-  const [addPost, setAddPost] = useState(false)
+  const [selectedPost, setSelectedPost] = React.useState<SinglePost | null>(null)
+  const [addPost, setAddPost] = React.useState(false)
   const likedPosts = posts.filter((post) => post.liked)
 
-  const editPost = (post) => {
+  const editPost = (post: SinglePost) => {
     setSelectedPost(post)
     setflagEditPost(true)
   }
 
   useDocumentTitle(`${title}`)
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
-  const handleLikePost = (post) => {
-    post = { ...post, liked: !post.liked}
-    dispatch(likePostRedux(post))
+  const handleLikePost = (id: string) => {
+    dispatch(likePostRedux(id))
   }
 
-  const handleDeletePost = (index) => {
-    const updatedPost = [...(isLikedPosts ? likedPosts : posts)]
-    dispatch(deletePost(updatedPost[index]))
+  const handleDeletePost = (id: string) => {
+    dispatch(deletePost(id))
   }
 
   return (
     <>
       <h2 className={blog.cardh2}>{title}</h2>
       <div className={blog.cards}>
-      {(isLikedPosts ? likedPosts : posts).map((post, index) => {
-        return (
-          <Post
+      {(isLikedPosts ? likedPosts : posts).map((post, index) => (
+          <Post 
             key={post.id}
             post={post}
             index={index}
-            posts={posts}
             handleLikePost={handleLikePost}
             handleDeletePost={handleDeletePost}
             editPost={editPost}
           />
-        )
-        })
+      ))
       }
       </div> 
       <EditPost selectedPost={selectedPost} flagEditPost={flagEditPost} setflagEditPost={setflagEditPost} />

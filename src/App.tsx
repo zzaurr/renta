@@ -1,21 +1,19 @@
-import './App.css';
-import { ContentBlog } from './components/Blog/Blog'
+import './App.scss';
 import { LogIn } from './components/LogIn/LogIn';
 import { useEffect } from 'react';
 import { BrowserRouter, Routes } from 'react-router-dom';
 import { Route } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { fetchPosts } from './store/slices/posts';
 import MenuLauout from './routes/MenuLayout';
-import { HeaderBlog } from './components/Header/Header';
 import { Favorite } from './components/Favorite/Favorite';
+import { useAppDispatch } from './utils/hooks';
+import Blog from './components/Blog/Blog';
 
 
 
 
 function App() {
-  const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
 
   useEffect(()=> {
@@ -27,7 +25,7 @@ function App() {
    <BrowserRouter>
      <Routes>
        <Route path="/" element={<MenuLauout/>} >
-          <Route  index element={<ContentBlog/>} />
+          <Route  index element={<Blog/>} />
           <Route path='favorite' element={<Favorite/>} />
          </Route>
          <Route path='login' element={<LogIn/>} />
