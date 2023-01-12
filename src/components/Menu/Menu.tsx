@@ -1,17 +1,17 @@
 import menu from './Menu.module.scss'
 import avatar from './images.png'
 import { NavLink } from 'react-router-dom'
-// import { useDispatch } from 'react-redux'
 // import { logOutR } from '../../store/slices/auth'
 import { ReactComponent as SearchIcon } from './search.svg';
+// import { useAppDispatch } from '../../utils/hooks'
 
 
 export const Menu = () => {
 
-// const dispatch = useDispatch()
+// const dispatch = useAppDispatch()
 
 // const logOut = () => {
-//     dispatch(logOutR())
+//     dispatch(logOutR(false))
 // }
 return (
 <aside>
