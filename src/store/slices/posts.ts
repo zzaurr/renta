@@ -8,6 +8,12 @@ type PostsState = {
     error: string | null;
 }
 
+export type NewPost = {
+  title: string,
+  description: string,
+  liked: boolean,
+}
+
 const initialState: PostsState = {
     posts: [],
     isLoading: false,
@@ -19,7 +25,7 @@ export const fetchPosts = createAsyncThunk<SinglePost[], undefined, {rejectValue
   async (_, {rejectWithValue}) => {
     const response = await fetch(POST_URL);
     if(response.ok) {
-      return await response.json()
+      return (await response.json()) as SinglePost[]
     } else {
       return rejectWithValue('Ошибка при получении постов')
     }
@@ -41,15 +47,15 @@ export const likePostRedux = createAsyncThunk<SinglePost, string, { rejectValue:
               })
          })
          if(response.ok) {
-            return await response.json() as SinglePost
+            return (await response.json()) as SinglePost
         } 
         }
 
-            return rejectWithValue('Ошибка при получении поста')
+            return rejectWithValue('Ошибка, нет поста в списке')
 })
 
 export const deletePost = createAsyncThunk<string, string, {rejectValue: string}>(
-    'posta/deletePost',
+    'posts/deletePost',
     async (id, {rejectWithValue}) => {
     const response = await fetch(POST_URL + id, {
         method: 'DELETE',
@@ -61,25 +67,35 @@ export const deletePost = createAsyncThunk<string, string, {rejectValue: string}
     }
 })
 
-export const editPost = createAsyncThunk<SinglePost, SinglePost, {rejectValue: string}>(
-    'posts/editPost',
-    async (newPost, {rejectWithValue}) => {
-    const response = await fetch(POST_URL + newPost.id, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newPost)
 
-    });
-    if(response.ok) {
-        return await response.json()
-    } else {
-        return rejectWithValue('Ошибка при изменении поста')
-    }
+export const editPost = createAsyncThunk<SinglePost, SinglePost, {rejectValue: string, state: {posts: PostsState}}>(
+    'posts/editPost',
+    async (newPost, {rejectWithValue, getState}) => {
+      const post = getState().posts.posts.find(post => post.id === newPost.id)
+      if (post) {
+        const response = await fetch(POST_URL + post.id, {
+          method: 'PUT',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            title: newPost.title,
+            description: newPost.description,
+          })
+  
+      })
+        if(!response.ok) {
+          return rejectWithValue('Ошибка при изменении поста')
+        }
+
+        return (await response.json()) as SinglePost
+      }
+
+    return rejectWithValue('Ошибка при изменении поста')
+
 })
 
-export const addPostRedux = createAsyncThunk<SinglePost, string, {rejectValue: string}>(
+export const addPostRedux = createAsyncThunk<SinglePost, NewPost, { rejectValue: string }>(
   'posts/addPost',
   async(newPost, {rejectWithValue}) => {
     const response =  await fetch(POST_URL, {
@@ -91,9 +107,10 @@ export const addPostRedux = createAsyncThunk<SinglePost, string, {rejectValue: s
   })
   if(response.ok) {
     return (await response.json()) as SinglePost
-  } else {
+
+  } 
     return rejectWithValue('Ошибка при добавлении поста')
-    }
+
   }
 )
 
@@ -128,6 +145,10 @@ const postsSlice = createSlice({
         state.posts = state.posts.filter((post) => post.id !== action.payload)
       })
 
+      .addCase(editPost.pending, (state) => {
+        state.error = null
+      })
+
       .addCase(editPost.fulfilled, (state, action) => {
         state.posts = state.posts.map((post) => {
           if(post.id === action.payload.id) {
@@ -149,7 +170,6 @@ const postsSlice = createSlice({
 })
 
 export const postReducer = postsSlice.reducer;
-// export const selectPostsData = (state => state.posts);
 
 function isError(action: AnyAction) {
   return action.type.endsWith('rejected')

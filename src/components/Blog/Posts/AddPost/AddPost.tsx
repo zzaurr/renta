@@ -1,23 +1,27 @@
-import React, { useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import { addPostRedux } from '../../../../store/slices/posts';
-import { POST_URL } from '../../../Data/Data';
+import React from 'react';
+import { addPostRedux, NewPost } from '../../../../store/slices/posts';
+import { useAppDispatch } from '../../../../utils/hooks';
+
+type AddPostProps = {
+    setAddPost: React.Dispatch<React.SetStateAction<boolean>>,
+    addPost: boolean,
+}
 
 
-export const AddPost = ({setAddPost, addPost }) => {
-    const titleRef = useRef();
-    const desripionRef = useRef();
+export const AddPost = ({ setAddPost, addPost }: AddPostProps) => {
+    const titleRef = React.useRef<HTMLInputElement | null>(null)
+    const desripionRef = React.useRef<HTMLInputElement | null>(null)
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
-    const addNewPost = async (e) => {
+    const addNewPost = async (e: { preventDefault: () => void; }) => {
         e.preventDefault()
 
         const newPost = {
-            title: titleRef.current.value,
-            description: desripionRef.current.value,
+            title: titleRef.current!.value,
+            description: desripionRef.current!.value,
             liked: false,
-        }
+        } as NewPost
 
         dispatch(addPostRedux(newPost))
         setAddPost(false)

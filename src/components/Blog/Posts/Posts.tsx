@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import {  useState } from 'react';
 import { deletePost, likePostRedux } from '../../../store/slices/posts';
 import { useAppDispatch, useAppSelector, useDocumentTitle } from '../../../utils/hooks';
 import { AddPost } from './AddPost/AddPost';
@@ -20,11 +19,11 @@ export const Posts =  ( {
   const { posts } = useAppSelector(state => state.posts)
 
   const [flagEditPost, setflagEditPost] = useState(false)
-  const [selectedPost, setSelectedPost] =useState({})
-  const [addPost, setAddPost] = useState(false)
+  const [selectedPost, setSelectedPost] = React.useState<SinglePost | null>(null)
+  const [addPost, setAddPost] = React.useState(false)
   const likedPosts = posts.filter((post) => post.liked)
 
-  const editPost = (post: React.SetStateAction<{}>) => {
+  const editPost = (post: SinglePost) => {
     setSelectedPost(post)
     setflagEditPost(true)
   }
@@ -45,9 +44,7 @@ export const Posts =  ( {
     <>
       <h2 className={blog.cardh2}>{title}</h2>
       <div className={blog.cards}>
-      {(isLikedPosts ? likedPosts : posts).map((post, index) => {
-        console.log(post)
-        return (
+      {(isLikedPosts ? likedPosts : posts).map((post, index) => (
           <Post 
             key={post.id}
             post={post}
@@ -56,8 +53,7 @@ export const Posts =  ( {
             handleDeletePost={handleDeletePost}
             editPost={editPost}
           />
-        )
-        })
+      ))
       }
       </div> 
       <EditPost selectedPost={selectedPost} flagEditPost={flagEditPost} setflagEditPost={setflagEditPost} />
