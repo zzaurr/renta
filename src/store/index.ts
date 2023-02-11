@@ -3,12 +3,12 @@ import { authReduser } from "./slices/auth";
 import { postReducer } from "./slices/posts";
 
 const reducer = {
-    auth: authReduser,
-    posts: postReducer,
+  auth: authReduser,
+  posts: postReducer,
 }
 
 const store = configureStore({
-    reducer,
+  reducer,
 })
 
 export type AppDispatch = typeof store.dispatch;

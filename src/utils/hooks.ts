@@ -4,15 +4,15 @@ import { AppDispatch, RootState } from "../store"
 
 
 export const useDocumentTitle = (title: string) => {
-    useEffect(() => {
-        document.title = `React app: ${title}`
-    }, [title])
+  useEffect(() => {
+    document.title = `React app: ${title}`
+  }, [title])
 }
 
 export const useFetchPosts = () => {
-    const [addPost, setAddPost] = useState(false)
-    return { addPost, setAddPost}
+  const [addPost, setAddPost] = useState(false)
 
+  return { addPost, setAddPost}
 }
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();
