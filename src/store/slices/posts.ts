@@ -35,7 +35,7 @@ export const fetchPosts = createAsyncThunk<SinglePost[], undefined, {rejectValue
 export const likePostRedux = createAsyncThunk<SinglePost, string, { rejectValue: string, state: { posts: PostsState} }>(
     'posts/likePostRedux',
     async (id, {rejectWithValue, getState}) => {
-        const post = getState().posts.posts.find(post => post.id === id)
+        const post: SinglePost | undefined = getState().posts.posts.find(post => post.id === id)
         if (post) {
             const response = await fetch(POST_URL + id, {
                 method: 'PUT',
@@ -55,45 +55,43 @@ export const likePostRedux = createAsyncThunk<SinglePost, string, { rejectValue:
 })
 
 export const deletePost = createAsyncThunk<string, string, {rejectValue: string}>(
-    'posts/deletePost',
-    async (id, {rejectWithValue}) => {
-    const response = await fetch(POST_URL + id, {
-        method: 'DELETE',
-    });
-    if(response.ok) {
-        return id
-    } else {
-        return rejectWithValue('Ошибка при удалении поста')
+  'posts/deletePost',
+  async (id, {rejectWithValue}) => {
+  const response = await fetch(POST_URL + id, {
+    method: 'DELETE',
+  });
+  if(response.ok) {
+    return id
+  } else {
+      return rejectWithValue('Ошибка при удалении поста')
     }
 })
 
-
 export const editPost = createAsyncThunk<SinglePost, SinglePost, {rejectValue: string, state: {posts: PostsState}}>(
-    'posts/editPost',
-    async (newPost, {rejectWithValue, getState}) => {
-      const post = getState().posts.posts.find(post => post.id === newPost.id)
-      if (post) {
-        const response = await fetch(POST_URL + post.id, {
-          method: 'PUT',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            title: newPost.title,
-            description: newPost.description,
-          })
-  
+  'posts/editPost',
+  async (newPost, {rejectWithValue, getState}) => {
+    const post = getState().posts.posts.find(post => post.id === newPost.id)
+    if (post) {
+      const response = await fetch(POST_URL + post.id, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          title: newPost.title,
+          description: newPost.description,
+        })
       })
-        if(!response.ok) {
-          return rejectWithValue('Ошибка при изменении поста')
-        }
-
-        return (await response.json()) as SinglePost
+      if(!response.ok) {
+        return rejectWithValue('Ошибка при изменении поста')
       }
 
-    return rejectWithValue('Ошибка при изменении поста')
+      return (await response.json()) as SinglePost
+    }
 
-})
+    return rejectWithValue('Ошибка при изменении поста')
+  }
+)
 
 export const addPostRedux = createAsyncThunk<SinglePost, NewPost, { rejectValue: string }>(
   'posts/addPost',
@@ -106,11 +104,10 @@ export const addPostRedux = createAsyncThunk<SinglePost, NewPost, { rejectValue:
       body: JSON.stringify(newPost)
   })
   if(response.ok) {
-    return (await response.json()) as SinglePost
-
+    return (await response.json()) as SinglePost  
   } 
-    return rejectWithValue('Ошибка при добавлении поста')
 
+    return rejectWithValue('Ошибка при добавлении поста')
   }
 )
 

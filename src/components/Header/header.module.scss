@@ -1,0 +1,49 @@
+.header {
+  height: 80px;
+  position: sticky;
+  top: 0px;
+  margin: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(221, 221, 221);
+  padding: 0 80px;
+
+  a{
+    color: black;
+    font-size: 14px;
+    line-height: 20px;
+    text-decoration: none;
+
+
+  }
+
+  .logo {
+    font-size: 32px;
+    font-weight: bold;
+  }
+}
+
+.new {
+  background-color: blue;
+  border: none;
+  border-radius: 3px;
+  text-align: center;
+  font-weight: bold;
+
+  &,
+  &:hover {
+    color: white;
+  }
+
+  &:hover {
+    background-color: blue;
+  }
+
+  &:disabled {
+    background-color: gray;
+    cursor: default;
+  }
+
+}

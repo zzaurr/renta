@@ -41,7 +41,7 @@ return (
             </form>
         </div>
         <nav className={menu.links}>
-            <NavLink to='/'>Blog</NavLink>
+            <NavLink to='/blog'>Blog</NavLink>
             <NavLink to='favorite'>Favorite</NavLink>
             <NavLink to='/favorite'>Settings</NavLink>
         </nav>

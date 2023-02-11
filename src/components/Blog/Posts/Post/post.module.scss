@@ -1,0 +1,26 @@
+.postCard {
+  // margin-bottom: 10px;
+  // width: 300px;
+  // width: 200px;
+  // margin-right: 10px;
+  background-color: white;
+  min-width: 275px;
+  max-width: 325px;
+
+  .title {
+    font-size: 14px;
+    margin: 10px 0 14px 0;
+
+  }
+
+  .description {
+    font-size: 12px;
+    color: #3e3e3e;
+
+  }
+
+  img {
+    width: 100%;
+    border-radius: 5px;
+}
+}

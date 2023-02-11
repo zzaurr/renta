@@ -5,12 +5,10 @@ import { SinglePost } from "../post.model";
 import edit from './editPost.module.scss'
 
 type EditPostProps = {
-  setflagEditPost: React.Dispatch<React.SetStateAction<boolean>>,
-  flagEditPost: boolean,
   selectedPost: SinglePost | null,
 }
 
-export const EditPost = ({setflagEditPost, flagEditPost, selectedPost }: EditPostProps) => {
+export const EditPost = ({ selectedPost }: EditPostProps) => {
   const titleRef = React.useRef<HTMLInputElement | null>(null);
   const descriptionRef = React.useRef<HTMLInputElement | null>(null);
   const dispatch = useAppDispatch()
@@ -24,7 +22,6 @@ export const EditPost = ({setflagEditPost, flagEditPost, selectedPost }: EditPos
       description: descriptionRef.current!.value,
     } as SinglePost
     dispatch(editPost(newPost))
-    setflagEditPost(false)
   }
 
   }
@@ -32,10 +29,9 @@ export const EditPost = ({setflagEditPost, flagEditPost, selectedPost }: EditPos
   return (
     <>
       {
-      flagEditPost && selectedPost && (
+      selectedPost && (
         <>
           <div className={edit.editForm}>
-            <button onClick={() => setflagEditPost(false)}>X</button>
             <h1>создание поста</h1>
             <form>
               <input ref={titleRef}  defaultValue={selectedPost.title} required/>
@@ -43,7 +39,6 @@ export const EditPost = ({setflagEditPost, flagEditPost, selectedPost }: EditPos
               <button type="submit" onClick={editSelectPost}>сохранить</button>
             </form>
           </div>
-          <div className={edit.editFormBackgraund} onClick={ () => setflagEditPost(false)}/>
         </>)
       }
     </>

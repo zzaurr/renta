@@ -1,4 +1,5 @@
-import { Posts } from './Posts/Posts';
+import { Posts } from './Posts/PostList';
+import blog from './blog.module.scss'
 
 const Blog = () => {
 
@@ -9,13 +10,7 @@ const Blog = () => {
   // }, [dispatch])
 
   return (
-    <>
-    <main>
-        <section id='maincontent'>
-          <Posts />
-        </section>
-    </main>
-  </>
+          <Posts title='Blog'/>
   )
 
 
