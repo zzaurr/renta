@@ -1,0 +1,66 @@
+@import './color.scss';
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin flex-center {
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-row-center {
+  @include flex-row;
+  @include flex-center;
+}
+
+@mixin flex-column-center {
+  @include flex-column;
+  @include flex-center;
+}
+
+.flex-row {
+  @include flex-row
+}
+
+.flex-column {
+  @include flex-column
+}
+
+.flex-row-center {
+  @include flex-row-center
+}
+
+.flex-column-center {
+  @include flex-column-center
+}
+
+@mixin button {
+  @include flex-row-center;
+
+  background-color: $blue;
+  border: none;
+  border-radius: 3px;
+  text-align: center;
+  font-weight: bold;
+
+  &,
+  &:hover {
+    color: $white;
+  }
+
+  &:hover {
+    background-color: $blue-dark;
+  }
+
+  &:disabled {
+    background-color: $gray;
+    cursor: default;
+  }
+}

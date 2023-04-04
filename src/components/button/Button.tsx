@@ -1,5 +1,4 @@
 import React from 'react'
-// import button from './button.module.scss'
 import button from './button.module.scss'
 
 type ButtonProps = {
