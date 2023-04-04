@@ -1,3 +1,5 @@
+@import '../../styles/mixin.scss';
+
 .header {
   height: 80px;
   position: sticky;
@@ -9,14 +11,17 @@
   align-items: center;
   border-bottom: 1px solid rgb(221, 221, 221);
   padding: 0 80px;
+  background-color: white;
 
   a{
-    color: black;
+    color: $black;
     font-size: 14px;
     line-height: 20px;
     text-decoration: none;
+  }
 
-
+  .new {
+    color: $white;
   }
 
   .logo {
@@ -26,24 +31,7 @@
 }
 
 .new {
-  background-color: blue;
-  border: none;
-  border-radius: 3px;
-  text-align: center;
-  font-weight: bold;
+  @include button;
 
-  &,
-  &:hover {
-    color: white;
-  }
-
-  &:hover {
-    background-color: blue;
-  }
-
-  &:disabled {
-    background-color: gray;
-    cursor: default;
-  }
-
+  padding: 6px 12px;
 }

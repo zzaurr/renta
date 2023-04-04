@@ -1,39 +1,38 @@
-import React from 'react';
+import { FormApi } from 'final-form';
+import { Form } from 'react-final-form';
 import { addPostRedux, NewPost } from '../../../../store/slices/posts';
 import { useAppDispatch } from '../../../../utils/hooks';
+import FormButton from '../../../form/FormButton';
+import FormField from '../../../form/FormField';
+import FormSelect from '../../../form/FormSelect';
 
-
-
-
-export const AddPost = () => {
-    const titleRef = React.useRef<HTMLInputElement | null>(null)
-    const desripionRef = React.useRef<HTMLInputElement | null>(null)
-
-    const dispatch = useAppDispatch()
-
-    const addNewPost = async (e: { preventDefault: () => void; }) => {
-        e.preventDefault()
-
-        const newPost = {
-            title: titleRef.current!.value,
-            description: desripionRef.current!.value,
-            liked: false,
-        } as NewPost
-
-        dispatch(addPostRedux(newPost))
-    }
-
-    return (
-        
-            <>
-                <div className='addForm'>
-                    <h1>создание поста</h1>
-                    <form onSubmit={addNewPost}>
-                        <input ref={titleRef} required/>
-                        <input ref={desripionRef} required/>
-                        <button>добавить пост</button>
-                    </form>
-                </div>
-            </>
-    ) 
+const OPTIONS = {
+  House: 'House',
+  Apartment: 'Apartment',
+  Room: 'Room'
 }
+
+const AddPost = () => {
+  const dispatch = useAppDispatch()
+
+  return (
+    <Form
+      onSubmit={ (data: NewPost, form: FormApi<NewPost, string>) => {
+        dispatch(addPostRedux(data))
+        form.reset()
+      }  }
+      render={function NewItemForm({handleSubmit}) {
+        return (
+          <form onSubmit={handleSubmit}>
+            <FormSelect name={'title'} required options={OPTIONS} />
+            <FormField name='description' required />
+            <FormButton />
+          </form>
+        )
+      }}
+    ></Form>
+
+  )
+}
+
+export default AddPost

@@ -1,0 +1,58 @@
+@import '../../styles/color.scss';
+@import '../../styles/mixin.scss';
+
+.field {
+  position: relative;
+
+  &.error .fieldInput {
+    &, &:focus, &:active {
+      border-color: $red;
+      outline-color: $red;
+    }
+  }
+}
+
+.fieldInput,
+.button {
+  height: 40px;
+}
+
+.fieldInput {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid $gray;
+  color: $black;
+  resize: none;
+  font-family: inherit;
+}
+
+.fieldError {
+  color: $red;
+}
+
+.button {
+  @include button;
+
+  padding: 0 24px;
+  min-width: 128px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.fieldSelect {
+  width: auto;
+}
+
+.chevron {
+  position: absolute;
+  top: 8px;
+  right: 2px;
+  width: 32px;
+  height: 24px;
+  background-color: $white;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../public/icons/chevron.svg');
+  pointer-events: none;
+  transform: rotate(180deg);
+}
