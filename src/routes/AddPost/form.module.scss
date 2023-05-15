@@ -1,0 +1,101 @@
+@import '../../styles/mixin.scss';
+
+.main {
+  position: relative;
+  width: 640px;
+  margin: auto;
+
+  fieldset {
+    @include flex-column;
+    margin-bottom: 64px;
+
+    p {
+      padding-top: 0;
+    }
+
+    &:first-child {
+      margin-top: 6px;
+    }
+
+    .description {
+      font-size: 18px;
+      color: $gray-normal;
+      box-sizing: border-box;
+    }
+
+    .legend {
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 32px;
+      width: 630px;
+    }
+
+    .title {
+      margin-bottom: 32px;
+
+      .legend {
+        margin-bottom: 16px;
+      }
+    }
+
+    .itemCounter {
+      @include flex-row;
+      justify-content: space-between;
+      width: 630px;
+      border-bottom: 1px solid $gray;
+      padding: 24px 0;
+
+      legend {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+.advantages {
+  width: 630px;
+
+  .items {
+    @include flex-row;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 24px 0 40px 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.nameHouse {
+  width: 100%;
+  padding-top: 24px;
+
+  textarea {
+    font-size: 22px;
+    padding: 24px;
+    border-radius: 8px;
+    line-height: 26px;
+    max-height: 50vh;
+    resize: vertical;
+  }
+}
+
+.price {
+  @include flex-column-center;
+  border: 1px solid $gray;
+  border-radius: 12px;
+  background-color: $gray-light;
+  padding: 32px;
+
+
+  input {
+    height: unset;
+    padding: 8px 12px;
+    line-height: 80px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 48px;
+    font-weight: 600;
+  }
+}

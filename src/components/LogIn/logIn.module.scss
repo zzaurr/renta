@@ -1,0 +1,11 @@
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+
+  input {
+    width: 100%;
+    padding: 0;
+    border: 1px gray solid;
+  }
+}

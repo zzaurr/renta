@@ -7,7 +7,7 @@ import MenuLauout from './routes/BaseLayout';
 import { Favorite } from './components/Blog/Favorite/Favorite';
 import { useAppDispatch } from './utils/hooks';
 import Blog from './components/Blog/Blog';
-import AddPost from './components/Blog/Posts/AddPost/AddPost';
+import AddPost from './routes/AddPost/AddPost';
 import HeadeerLayout from './routes/header/HeaderLayout';
 import HomeRoute from './routes/home/HomeRoute';
 import PostRoute from './routes/postRoute/PostRoute';
