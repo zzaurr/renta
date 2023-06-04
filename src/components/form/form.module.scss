@@ -9,7 +9,33 @@
       border-color: $red;
       outline-color: $red;
     }
+
+    &:focus {
+      outline-style: none;
+      box-shadow: $red 0px 0px 0px 2px;
+      border-color: transparent;
+    }
   }
+
+  :focus {
+    outline-style: none;
+    box-shadow: $black 0px 0px 0px 2px;
+    border-color: transparent;
+  }
+
+  .price {
+    @include flex-row;
+  }
+}
+
+.fieldInput,
+.fieldTextarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid $gray;
+  color: $black;
+  resize: none;
+  font-family: inherit;
 }
 
 .fieldInput,
@@ -55,4 +81,430 @@
   background-image: url('../../../public/icons/chevron.svg');
   pointer-events: none;
   transform: rotate(180deg);
+}
+
+.radioBtnContainer {
+	padding-top: 10px;
+
+	.fieldRadioBtn {
+		@include flex-row;
+		align-items: center;
+
+		margin-top: 10px;
+		&:first-child {
+			margin-top: 0;
+		}
+
+		.fieldInput {
+			width: 18px;
+			height: 18px;
+		}
+	}
+}
+
+.radioGroupIconBtnContainer,
+.radioIconBtnContainer {
+
+  .fieldInput {
+    display: none;
+  }
+
+  .radioIconBtn {
+    justify-content: space-between;
+    border: 1px solid $gray;
+    position: relative;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: $black 0px 0px 0px 2px;
+      border-color: transparent;
+    }
+
+    .description {
+      @include flex-column;
+      width: 100%;
+
+      .title {
+        line-height: 24px;
+      }
+
+      span {
+        line-height: 18px;
+        margin-top: 4px;
+        max-width: 400px;
+      }
+    }
+  }
+  .buttonActive {
+    background-color: $gray-light;
+    box-shadow: $black 0px 0px 0px 2px;
+    border-color: transparent;
+  }
+}
+
+.radioIconBtnContainer {
+  @include flex-column;
+  margin-top: 16px;
+
+  .fieldInput {
+    display: none;
+  }
+
+  .radioIconBtn {
+    @include flex-row;
+    width: 630px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+
+
+    .description {
+      margin: 24px;
+
+      span {
+        font-size: 14px;
+        color: $gray-normal;
+      }
+    }
+
+    .entire,
+    .room,
+    .hostel {
+      width: 35px;
+      height: 35px;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      margin-right: 24px;
+      margin-top: 24px;
+      background-position: center;
+    }
+
+    .house {
+      background-image: url(../../../public/newItem/house.svg);
+    }
+
+    .room {
+      background-image: url(../../../public/newItem/door.svg);
+    }
+
+    .hostel {
+      background-image: url(../../../public/newItem/hostel.svg);
+    }
+  }
+}
+
+.radioGroupIconBtnContainer {
+  @include flex-row;
+  gap: 16px;
+  flex-wrap: wrap;
+  max-width: 640px;
+  margin-top: 16px;
+
+
+  .fieldInput {
+    display: none;
+  }
+
+  .radioIconBtn {
+    @include flex-column;
+    width: 202px;
+    padding: 16px;
+    border-radius: 8px;
+
+    .description {
+      font-size: 16px;
+
+      span {
+        font-weight: 600;
+      }
+    }
+
+    .house,
+    .apartment,
+    .dome,
+    .hotel,
+    .motorhome {
+      padding-left: 4px;
+      width: 31px;
+      height: 27px;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      margin-top: 10px;
+      margin-bottom: 6px;
+      background-position: center;
+    }
+
+    .house {
+      background-image: url(../../../public/newItem/house.svg);
+    }
+
+    .apartment {
+      background-image: url(../../../public/newItem/apartment.svg);
+    }
+
+    .dome {
+      background-image: url(../../../public/newItem/dome.svg);
+    }
+
+    .hotel {
+      background-image: url(../../../public/newItem/hotel.svg);
+    }
+
+    .motorhome {
+      background-image: url(../../../public/newItem/motorhome.svg);
+    }
+  }
+}
+
+.fieldCounter {
+  @include flex-row-center;
+  justify-content: space-between;
+  width: 104px;
+
+  .fieldInput {
+    display: none;
+  }
+}
+
+.counterButtonMinus,
+.counterButtonPlus {
+  width: 32px;
+  height: 32px;
+  border: 1px solid $gray;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 12px 12px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  display: inline-flex;
+  box-sizing: border-box;
+  position: relative;
+
+  &:hover {
+    border-color: $black;
+  }
+
+  &.disCounterButton {
+    touch-action: manipulation;
+    cursor: not-allowed;
+    opacity: 50%;
+
+    &:hover {
+      border-color: $gray;
+    }
+  }
+}
+
+.counterButtonMinus {
+  background-image: url(../../../public/icons/minus.svg);
+}
+
+.counterButtonPlus {
+  background-image: url(../../../public/icons/plus.svg);
+}
+
+.checkboxWrapper{
+  flex: 0 1 calc(33% - calc(32px / 3));
+}
+
+.checkboxButton {
+
+  input {
+    display: none;
+  }
+
+  .checkboxIconButton {
+    @include flex-column;
+    padding: 16px;
+    background-color: transparent;
+    border-radius: 8px;
+    border: 1px solid $gray;
+    transition: box-shadow 0.2s ease,transform 0.1s ease;
+    min-height: 88px;
+    height: 100%;
+    width: 100%;
+    align-items: flex-start;
+    margin: 0;
+    box-sizing: border-box;
+    justify-content: space-between;
+
+    .text {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    &:hover {
+      box-shadow: $black 0px 0px 0px 2px;
+      border-color: transparent;
+    }
+  }
+
+  .buttonActive {
+    background-color: $gray-light;
+    box-shadow: $black 0px 0px 0px 2px;
+    border-color: transparent;
+  }
+
+  .checkboxActive {
+    background-color: $gray-light;
+  }
+
+  .wifi,
+  .parking,
+  .kitchen,
+  .tv,
+  .conditioner,
+  .workspace,
+  .washingMachine,
+  .pool,
+  .jacuzzi,
+  .courtyard,
+  .barbecue,
+  .outdoorDiningArea,
+  .campfire,
+  .fireplace,
+  .piano,
+  .simulators,
+  .sea,
+  .beach,
+  .smokeDetector,
+  .medicine,
+  .extinguisher,
+  .sensorCO {
+    width: 45px;
+    height: 45px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .wifi {
+    background-image: url(../../../public/newItem/wifi.svg);
+  }
+
+  .parking {
+    background-image: url(../../../public/newItem/parking.svg);
+  }
+
+  .kitchen {
+    background-image: url(../../../public/newItem/kitchen.svg);
+  }
+
+  .tv {
+    background-image: url(../../../public/newItem/tv.svg);
+  }
+
+  .conditioner {
+    background-image: url(../../../public/newItem/conditioner.svg);
+  }
+
+  .workspace {
+    background-image: url(../../../public/newItem/workspace.svg);
+  }
+
+  .washingMachine {
+    background-image: url(../../../public/newItem/washingMachine.svg);
+  }
+
+  .pool {
+    background-image: url(../../../public/newItem/pool.svg);
+  }
+
+  .jacuzzi {
+    background-image: url(../../../public/newItem/jacuzzi.svg);
+  }
+
+  .courtyard {
+    background-image: url(../../../public/newItem/courtyard.svg);
+  }
+
+  .barbecue {
+    background-image: url(../../../public/newItem/barbecue.svg);
+  }
+
+  .outdoorDiningArea {
+    background-image: url(../../../public/newItem/outdoorDiningArea.svg);
+  }
+
+  .campfire {
+    background-image: url(../../../public/newItem/campfire.svg);
+  }
+
+  .fireplace{
+    background-image: url(../../../public/newItem/fireplace.svg);
+  }
+
+  .piano {
+    background-image: url(../../../public/newItem/piano.svg);
+  }
+
+  .simulators {
+    background-image: url(../../../public/newItem/simulators.svg);
+  }
+
+  .sea {
+    background-image: url(../../../public/newItem/sea.svg);
+  }
+
+  .beach {
+    background-image: url(../../../public/newItem/beach.svg);
+  }
+
+  .smokeDetector {
+    background-image: url(../../../public/newItem/smokeDetector.svg);
+  }
+
+  .medicine {
+    background-image: url(../../../public/newItem/medicine.svg);
+  }
+
+  .extinguisher {
+    background-image: url(../../../public/newItem/extinguisher.svg);
+  }
+
+  .sensorCO {
+    background-image: url(../../../public/newItem/sensorCO.svg);
+  }
+}
+
+.price {
+  @include flex-row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  p {
+    box-sizing: border-box;
+    display: inline-block;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0%;
+    padding: 0 32px;
+  }
+
+  .counterButtonMinus,
+  .counterButtonPlus {
+    width: 48px;
+    height: 48px;
+    background-color: $white;
+  }
+
+  .fieldInput {
+    width: 100%;
+  }
+}
+
+.tooltip {
+  text-align: center;
+  padding-top: 12px;
+  font-size: 18px;
+  line-height: 24px;
+  margin-bottom: 16px;
+}
+
+.similar {
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  max-width: 360px;
+  padding-top: 16px;
 }

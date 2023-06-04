@@ -1,37 +1,32 @@
 import { useRef } from 'react';
-import './LogIn.css'
+import login from './logIn.module.scss'
 import { useDocumentTitle } from '../../utils/hooks';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../store/slices/auth';
 
 export const LogIn = () => {
+  const loginRef = useRef();
+  const passwordRef = useRef();
+  const dispatch = useDispatch()
 
-    const loginRef = useRef();
-    const passwordRef = useRef();
-
-    const dispatch = useDispatch()
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-
-        const userData = {
-            login: loginRef.current.value,
-            password: passwordRef.current.value
-        }
-        dispatch(logIn())
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const userData = {
+      login: loginRef.current.value,
+      password: passwordRef.current.value
     }
-    useDocumentTitle('logIn')
+    dispatch(logIn())
+  }
+  useDocumentTitle('logIn')
 
-    return (
-        <>
-        <h1>Вход</h1>
-        <form onSubmit={handleSubmit} className='loginForm'>
-            <input ref={loginRef} placeholder="Логин" required/>
-            <input ref={passwordRef} type='password' placeholder="Пароль" required/>
-            <button type="submit"> Вход </button>
-
-        </form>
-        </>
-    )
+  return (
+    <>
+      <h1>Вход</h1>
+      <form onSubmit={handleSubmit} className={login.loginForm}>
+        <input ref={loginRef} placeholder="Логин" required/>
+        <input ref={passwordRef} type='password' placeholder="Пароль" required/>
+        <button type="submit"> Вход </button>
+      </form>
+    </>
+  )
 }
